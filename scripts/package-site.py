@@ -2,6 +2,7 @@
 from pathlib import Path
 import shutil
 from zipfile import ZipFile, ZIP_DEFLATED
+import xml.etree.ElementTree as ET
 
 root = Path(__file__).resolve().parent.parent
 output = root / 'dist'
@@ -10,6 +11,10 @@ files = ['index.html', 'reference.html', 'styles.css', 'studio.css', 'sitemap.xm
 files += [path.name for path in root.glob('google*.html')]
 for name in files:
     shutil.copy2(root / name, output / name)
+# Google also supports one URL per line; derive it from XML to keep one source.
+sitemap = ET.parse(root / 'sitemap.xml')
+urls = [node.text.strip() for node in sitemap.findall('{*}url/{*}loc')]
+(output / 'sitemap.txt').write_text('\n'.join(urls) + '\n', encoding='utf-8')
 for name in ['js', 'assets', 'vendor']:
     shutil.copytree(root / name, output / name, dirs_exist_ok=True)
 (output / '.nojekyll').touch()
