@@ -1,5 +1,8 @@
 # SCD Analysis Studio
 
+**[Webアプリを開く：SCD Analysis Studio](https://hom-k.github.io/SCDanalysisstudio/)**  
+[手法の解説・計算式・参考文献](https://hom-k.github.io/SCDanalysisstudio/reference.html)
+
 Single-Case Experimental Design（SCD）の視覚分析と非重複指標を，一般的なWebブラウザで実行する静的Webアプリケーションです．研究データはブラウザ内で処理し，アプリケーション側のサーバーへ自動送信しません．
 
 ## 1. 使い方（2ステップ）
